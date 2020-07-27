@@ -60,7 +60,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("Insert failed - ", e);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("SelectById failed - ", e);
 		}
 		return a;
 	}
@@ -168,7 +168,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("Delete failed - ", e);
 		}
 	}
 }
