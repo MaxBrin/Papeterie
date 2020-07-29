@@ -59,7 +59,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				a.setIdArticle(rs.getInt(1));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new DALException("Insert failed - ", e);
 		}
 	}
@@ -89,7 +88,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new DALException("SelectById failed - ", e);
 		}
 		return a;
@@ -167,7 +165,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new DALException("Delete failed - ", e);
 		}
 	}

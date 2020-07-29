@@ -21,12 +21,15 @@ public class CatalogueManager {
 	private static CatalogueManager instance;
 	private static ArticleDAO daoArticles;
 
-	public static CatalogueManager getInstance() throws BLLException {
+	public static CatalogueManager getInstance() {
 		if (instance == null) {
 			instance = new CatalogueManager();
-			daoArticles = DAOFactory.getArticleDAO();
 		}
 		return instance;
+	}
+
+	static {
+		daoArticles = DAOFactory.getArticleDAO();
 	}
 
 	private CatalogueManager() {
@@ -96,6 +99,8 @@ public class CatalogueManager {
 			throw new BLLException("Echec de removeArticle - article : " + article, e);
 		} catch (NullPointerException e) {
 			throw new BLLException("L'article n'est pas présent dans le catalogue", e);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -108,6 +113,7 @@ public class CatalogueManager {
 	public Article getArticle(int index) throws BLLException {
 		Article article = null;
 		try {
+			System.out.println();
 			article = daoArticles.selectById(index);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block

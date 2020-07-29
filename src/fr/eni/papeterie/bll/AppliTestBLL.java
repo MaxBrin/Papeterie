@@ -21,18 +21,7 @@ public class AppliTestBLL {
 		articles.add(new Ramette("ProDesign", "ForLaser", "A4 Special laser", 5.5f, 55, 100));
 
 		CatalogueManager mger = null;
-		try {
-			mger = CatalogueManager.getInstance();
-		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-//		try {
-//			mger = new CatalogueManager();
-//		} catch (BLLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+		mger = CatalogueManager.getInstance();
 
 		// Ajout d'un article au catalogue
 		try {
@@ -55,13 +44,18 @@ public class AppliTestBLL {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-
+		try {
+			System.out.println("Test getArticle sur index 2");
+			System.out.println(mger.getArticle(2));
+		} catch (BLLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// Suppression d'un article
 		try {
 			mger.removeArticle(stylo);
 			System.out.println(mger.getCatalogue());
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

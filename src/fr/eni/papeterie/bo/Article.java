@@ -115,7 +115,7 @@ public abstract class Article {
 	/**
 	 * @return the prixUnitaire
 	 */
-	public float getPrixUnitaire() {
+	public Float getPrixUnitaire() {
 		return prixUnitaire;
 	}
 

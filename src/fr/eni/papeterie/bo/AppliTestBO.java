@@ -47,7 +47,6 @@ public class AppliTestBO {
 			afficherCatalogue(articles);
 			System.out.println("---------------------------------------------------------------");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -61,7 +60,6 @@ public class AppliTestBO {
 			System.out.println(panier.getLigne(0).getArticle());
 			System.out.println("---------------------------------------------------------------");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("ERREUR : " + e.getMessage());
 		}
 
@@ -71,7 +69,6 @@ public class AppliTestBO {
 			panier.addLigne(articles.get(3), 5);
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("ERREUR : " + e.getMessage());
 		}
 
@@ -81,7 +78,6 @@ public class AppliTestBO {
 			System.out.println(panier.toString());
 			System.out.println("---------------------------------------------------------------");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("ERREUR : " + e.getMessage());
 		}
 
@@ -98,7 +94,6 @@ public class AppliTestBO {
 			panier.removeLigne(2); // suppression de PlumeS
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("ERREUR : " + e.getMessage());
 		}
 
@@ -109,7 +104,6 @@ public class AppliTestBO {
 			System.out.println("---------------------------------------------------------------");
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("ERREUR : " + e.getMessage());
 		}
 
