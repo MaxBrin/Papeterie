@@ -15,6 +15,7 @@ import fr.eni.papeterie.dal.ArticleDAO;
 import fr.eni.papeterie.dal.DALException;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
+
 	// Constante pour le type d'article
 	private static final String TYPE_STYLO = "Stylo";
 	private static final String TYPE_RAMETTE = "Ramette";
@@ -60,6 +61,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		} catch (SQLException e) {
 			throw new DALException("Insert failed - ", e);
+
 		}
 	}
 

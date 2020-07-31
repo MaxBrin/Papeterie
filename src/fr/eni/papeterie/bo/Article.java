@@ -13,8 +13,8 @@ public abstract class Article {
 	private String reference;
 	private String marque;
 	private String designation;
-	private float prixUnitaire;
-	private int qteStock;
+	private Float prixUnitaire;
+	private Integer qteStock;
 
 	public Article() {
 		super();
@@ -129,7 +129,7 @@ public abstract class Article {
 	/**
 	 * @return the qteStock
 	 */
-	public int getQteStock() {
+	public Integer getQteStock() {
 		return qteStock;
 	}
 

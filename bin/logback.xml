@@ -1,0 +1,12 @@
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>monFichier.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg\n</pattern>
+        </encoder>
+    </appender>
+    <logger name="fr.eni">
+        <appender-ref ref="FILE">
+        </appender-ref>
+    </logger>
+</configuration>

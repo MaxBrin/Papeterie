@@ -11,11 +11,11 @@ import javax.swing.SwingUtilities;
  * @dateDeCréation 28 juil. 2020
  */
 public class Main {
-
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override

@@ -5,12 +5,14 @@ package fr.eni.papeterie.bll;
 
 import java.util.List;
 
+import ch.qos.logback.classic.Logger;
 import fr.eni.papeterie.bo.Article;
 import fr.eni.papeterie.bo.Ramette;
 import fr.eni.papeterie.bo.Stylo;
 import fr.eni.papeterie.dal.ArticleDAO;
 import fr.eni.papeterie.dal.DALException;
 import fr.eni.papeterie.dal.DAOFactory;
+
 
 /**
  * @author Maxime Brin
@@ -20,6 +22,8 @@ import fr.eni.papeterie.dal.DAOFactory;
 public class CatalogueManager {
 	private static CatalogueManager instance;
 	private static ArticleDAO daoArticles;
+
+
 
 	public static CatalogueManager getInstance() {
 		if (instance == null) {
@@ -33,6 +37,7 @@ public class CatalogueManager {
 	}
 
 	private CatalogueManager() {
+
 
 	}
 
@@ -99,8 +104,6 @@ public class CatalogueManager {
 			throw new BLLException("Echec de removeArticle - article : " + article, e);
 		} catch (NullPointerException e) {
 			throw new BLLException("L'article n'est pas présent dans le catalogue", e);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -116,8 +119,7 @@ public class CatalogueManager {
 			System.out.println();
 			article = daoArticles.selectById(index);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new BLLException("BLL getArticle failed",e);
 		}
 		if (article == null) {
 			throw new BLLException("Cet id d'article n'existe pas dans le catalogue");
@@ -148,6 +150,14 @@ public class CatalogueManager {
 		}
 		if (article.getDesignation() == null || article.getDesignation().trim().length() == 0) {
 			sb.append("La designation  est obligatoire.\n");
+			valide = false;
+		}
+		if (article.getQteStock() == null){
+			sb.append("La quantité est obligatoire.\n");
+			valide = false;
+		}
+		if (article.getPrixUnitaire() == null){
+			sb.append("Le prix est obligatoire.\n");
 			valide = false;
 		}
 		if (article instanceof Ramette && ((Ramette) article).getGrammage() <= 0) {

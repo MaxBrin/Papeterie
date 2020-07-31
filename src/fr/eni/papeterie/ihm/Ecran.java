@@ -3,26 +3,11 @@
  */
 package fr.eni.papeterie.ihm;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import fr.eni.papeterie.bo.Article;
 import fr.eni.papeterie.bo.Ramette;
@@ -36,18 +21,19 @@ import fr.eni.papeterie.bo.Stylo;
 public class Ecran extends JFrame {
 
 	private static final long serialVersionUID = 2942422144839188321L;
-
+	// Attribut JLabel
+	private JLabel lblLogger;
 	// Attributs de classe pour les JTextfield
-	private static JTextField txtReference, txtDesignation, txtMarque, txtStock, txtPrix;
+	private  JTextField txtReference, txtDesignation, txtMarque, txtStock, txtPrix;
 
 	// Attributs de classe pour les JRadioButton
-	private static JRadioButton rbTypeRamette, rbTypeStylo;
+	private  JRadioButton rbTypeRamette, rbTypeStylo;
 
 	// Attributs de classe pour les JCheckBox
-	private static JCheckBox ck80Grammes, ck100Grammes;
+	private  JCheckBox ck80Grammes, ck100Grammes;
 
 	// Attributs de classe pour les JComboBox
-	private static JComboBox<String> cbCouleur;
+	private  JComboBox<String> cbCouleur;
 
 	// Attributs d'instance pour les JButton
 	private JButton btnBack, btnNew, btnSave, btnDelete, btnForward;
@@ -55,59 +41,72 @@ public class Ecran extends JFrame {
 	// Attributs d'instance pour les JPanel
 	private JPanel panelType, panelGrammage, panelBoutons;
 
+	// Attributs pour les JProgressBar
+	private JProgressBar pbIndexCatalogue;
+
 	// Constructeur
 	public Ecran() {
 		super("Papeterie");
-		this.setSize(new Dimension(450, 450));
+		this.setSize(new Dimension(450, 500));
 		this.setLocationRelativeTo(null);
 		myPanel();
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	// JLabel
+
+	public JLabel getLblLogger (){
+		if (this.lblLogger == null){
+			this.lblLogger = new JLabel("");
+			this.lblLogger.setForeground(Color.RED);
+		}
+		return this.lblLogger;
+	}
+
 	// JTextField
 
-	public static JTextField getTxtReference() {
-		if (txtReference == null) {
-			txtReference = new JTextField(20);
+	public JTextField getTxtReference() {
+		if (this.txtReference == null) {
+			this.txtReference = new JTextField(20);
 		}
-		return txtReference;
+		return this.txtReference;
 	}
 
-	public static JTextField getTxtDesignation() {
-		if (txtDesignation == null) {
-			txtDesignation = new JTextField(20);
+	public JTextField getTxtDesignation() {
+		if (this.txtDesignation == null) {
+			this.txtDesignation = new JTextField(20);
 		}
-		return txtDesignation;
+		return this.txtDesignation;
 	}
 
-	public static JTextField getTxtMarque() {
-		if (txtMarque == null) {
-			txtMarque = new JTextField(20);
+	public JTextField getTxtMarque() {
+		if (this.txtMarque == null) {
+			this.txtMarque = new JTextField(20);
 		}
-		return txtMarque;
+		return this.txtMarque;
 	}
 
-	public static JTextField getTxtStock() {
-		if (txtStock == null) {
-			txtStock = new JTextField(20);
+	public JTextField getTxtStock() {
+		if (this.txtStock == null) {
+			this.txtStock = new JTextField(20);
 		}
-		return txtStock;
+		return this.txtStock;
 	}
 
-	public static JTextField getTxtPrix() {
-		if (txtPrix == null) {
-			txtPrix = new JTextField(20);
+	public JTextField getTxtPrix() {
+		if (this.txtPrix == null) {
+			this.txtPrix = new JTextField(20);
 		}
-		return txtPrix;
+		return this.txtPrix;
 	}
 
 	// JRadioButton
 
-	public static JRadioButton getRbTypeRamette() {
-		if (rbTypeRamette == null) {
-			rbTypeRamette = new JRadioButton("Ramette");
-			rbTypeRamette.addActionListener(new ActionListener() {
+	public  JRadioButton getRbTypeRamette() {
+		if (this.rbTypeRamette == null) {
+			this.rbTypeRamette = new JRadioButton("Ramette");
+			this.rbTypeRamette.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					getCbCouleur().setEnabled(false);
@@ -116,13 +115,13 @@ public class Ecran extends JFrame {
 				}
 			});
 		}
-		return rbTypeRamette;
+		return this.rbTypeRamette;
 	}
 
-	public static JRadioButton getRbTypeStylo() {
-		if (rbTypeStylo == null) {
-			rbTypeStylo = new JRadioButton("Stylo");
-			rbTypeStylo.addActionListener(new ActionListener() {
+	public  JRadioButton getRbTypeStylo() {
+		if (this.rbTypeStylo == null) {
+			this.rbTypeStylo = new JRadioButton("Stylo");
+			this.rbTypeStylo.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					getCbCouleur().setEnabled(true);
@@ -131,33 +130,33 @@ public class Ecran extends JFrame {
 				}
 			});
 		}
-		return rbTypeStylo;
+		return this.rbTypeStylo;
 	}
 
 	// JCheclBox
 
-	public static JCheckBox getCk80Grammes() {
-		if (ck80Grammes == null) {
-			ck80Grammes = new JCheckBox("80 grammes");
+	public  JCheckBox getCk80Grammes() {
+		if (this.ck80Grammes == null) {
+			this.ck80Grammes = new JCheckBox("80 grammes");
 		}
-		return ck80Grammes;
+		return this.ck80Grammes;
 	}
 
-	public static JCheckBox getCk100Grammes() {
-		if (ck100Grammes == null) {
-			ck100Grammes = new JCheckBox("100 grammes");
+	public  JCheckBox getCk100Grammes() {
+		if (this.ck100Grammes == null) {
+			this.ck100Grammes = new JCheckBox("100 grammes");
 		}
-		return ck100Grammes;
+		return this.ck100Grammes;
 	}
 
 	// JComboBox
 
-	public static JComboBox<String> getCbCouleur() {
-		if (cbCouleur == null) {
+	public  JComboBox<String> getCbCouleur() {
+		if (this.cbCouleur == null) {
 			String[] couleurs = { "bleu", "rouge", "noir", "vert" };
-			cbCouleur = new JComboBox<String>(couleurs);
+			this.cbCouleur = new JComboBox<String>(couleurs);
 		}
-		return cbCouleur;
+		return this.cbCouleur;
 	}
 
 	// JButton
@@ -227,6 +226,15 @@ public class Ecran extends JFrame {
 		return this.btnForward;
 	}
 
+	// JProgressBar
+ 	public JProgressBar getPbIndexCatalogue(){
+		if (this.pbIndexCatalogue == null){
+			this.pbIndexCatalogue = new JProgressBar();
+			this.pbIndexCatalogue.setStringPainted(true);
+
+		}
+		return this.pbIndexCatalogue;
+	}
 	// Panel pour RadioButton Type
 	public JPanel getPanelType() {
 		if (panelType == null) {
@@ -260,7 +268,10 @@ public class Ecran extends JFrame {
 	public JPanel getPanelBoutons() {
 		if (panelBoutons == null) {
 			panelBoutons = new JPanel();
-			panelBoutons.setLayout(new FlowLayout());
+			panelBoutons.setLayout(new GridLayout());
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.insets = new Insets(5, 5, 5, 5);
+			gbc.ipadx = 5;
 			panelBoutons.add(getBtnBack());
 			panelBoutons.add(getBtnNew());
 			panelBoutons.add(getBtnSave());
@@ -291,43 +302,53 @@ public class Ecran extends JFrame {
 		panel.add(new JLabel("Référence"), gbc);
 
 		gbc.gridx = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(getTxtReference(), gbc);
 
 		// Ligne 2
 		gbc.gridx = 0;
 		gbc.gridy = 1;
+		gbc.fill = GridBagConstraints.NONE;
 		panel.add(new JLabel("Désignation"), gbc);
 
 		gbc.gridx = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(getTxtDesignation(), gbc);
 
 		// Ligne 3
 		gbc.gridx = 0;
 		gbc.gridy = 2;
+		gbc.fill = GridBagConstraints.NONE;
 		panel.add(new JLabel("Marque"), gbc);
 
 		gbc.gridx = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(getTxtMarque(), gbc);
 
 		// Ligne 4
 		gbc.gridx = 0;
 		gbc.gridy = 3;
+		gbc.fill = GridBagConstraints.NONE;
 		panel.add(new JLabel("Stock"), gbc);
 
 		gbc.gridx = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(getTxtStock(), gbc);
 
 		// Ligne 5
 		gbc.gridx = 0;
 		gbc.gridy = 4;
+		gbc.fill = GridBagConstraints.NONE;
 		panel.add(new JLabel("Prix"), gbc);
 
 		gbc.gridx = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(getTxtPrix(), gbc);
 
 		// Ligne 6
 		gbc.gridx = 0;
 		gbc.gridy = 5;
+		gbc.fill = GridBagConstraints.NONE;
 		panel.add(new JLabel("Type"), gbc);
 
 		gbc.gridx = 1;
@@ -353,27 +374,37 @@ public class Ecran extends JFrame {
 		// Ligne 9
 		gbc.gridx = 0;
 		gbc.gridy = 8;
-		gbc.gridwidth = 3;
+		gbc.gridwidth = 2;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(getPanelBoutons(), gbc);
+
+
+		// Ligne 10
+		gbc.gridx = 0;
+		gbc.gridy = 9;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.WEST;
+		panel.add(getLblLogger(),gbc);
+
+		// Ligne 11
+		gbc.gridx = 0;
+		gbc.gridy = 15;
+		gbc.gridwidth = 2;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.CENTER;
+		panel.add(getPbIndexCatalogue(),gbc);
 		this.setContentPane(panel);
 
 	}
 
-	/**
-	 * Permet d'afficher un message d'erreur à l'utilisateur
-	 * 
-	 * @param message
-	 */
-	public void messageErreur(String message) {
-		JOptionPane.showMessageDialog(Ecran.this, message, "", JOptionPane.ERROR_MESSAGE);
-	}
 
 	/**
 	 * Afficher un nouvel article qui est par default une ramette de 80gr
 	 */
 	public void afficherNouveau() {
 		afficheArticle(new Ramette("", "", "", 0.0f, 0, 80));
+		getRbTypeStylo().setEnabled(true);
+		getRbTypeRamette().setEnabled(true);
 	}
 
 	/**
@@ -393,6 +424,8 @@ public class Ecran extends JFrame {
 		if (article instanceof Ramette) {
 			// Si c'est une ramette on active les checkbox pour le grammage et on desactive
 			// la couleur
+			getRbTypeRamette().setEnabled(true);
+			getRbTypeStylo().setEnabled(false);
 			getRbTypeRamette().setSelected(true);
 			getCk80Grammes().setEnabled(true);
 			getCk100Grammes().setEnabled(true);
@@ -403,6 +436,8 @@ public class Ecran extends JFrame {
 		} else {
 			// Si c'est un crayon on active la combobox pour la couleur et on desactive le
 			// grammage
+			getRbTypeStylo().setEnabled(true);
+			getRbTypeRamette().setEnabled(false);
 			getRbTypeStylo().setSelected(true);
 			getCbCouleur().setEnabled(true);
 			getCbCouleur().setSelectedItem(((Stylo) article).getCouleur());
@@ -425,15 +460,13 @@ public class Ecran extends JFrame {
 		} else {
 			article = new Ramette();
 		}
-		// On met l'id de l'article à null car il n'est pas rentré par l'utilisateur
-		// mais il est géré par l'appli
-		article.setIdArticle(null);
 		// On récupère les données rentrées par l'utilisateur dans les textfield
 		article.setReference(getTxtReference().getText());
 		article.setDesignation(getTxtDesignation().getText());
 		article.setMarque(getTxtMarque().getText());
 		article.setPrixUnitaire(Float.parseFloat(getTxtPrix().getText()));
-		article.setQteStock(Integer.parseInt(getTxtStock().getText()));
+			article.setQteStock(Integer.parseInt(getTxtStock().getText()));
+
 		// On verifie si le combobox couleur est activé comme ça on sait que article est
 		// un stylo
 		if (getCbCouleur().isEnabled()) {
